@@ -48,6 +48,13 @@ Create your mysql volume and replicaset. Expose this new internal service.
     kubectl apply -f manifests/mysql-replicaset.yaml
     kubectl apply -f manifests/mysql-service.yaml
 
+    kubectl delete -f manifests/mysql-service.yaml
+    kubectl delete -f manifests/mysql-replicaset.yaml
+    kubectl delete -f manifests/mysql-volume-claim.yaml
+    kubectl delete -f secrets/wp-mysql-secrets.yaml
+    
+    
+
 
 Get a shell inside the mysql container, log into mysql, and set up the DB:
 
@@ -57,7 +64,12 @@ Get a shell inside the mysql container, log into mysql, and set up the DB:
     # use the root password you created earlier (secrets/wp-mysql-secrets.yaml)
     # use the following to decode your password if needed
     # echo -n YOURBASE64PASSWORD | base64 -d
-    mysql -u root -p
+    # mysql -u root -p
+
+    echo $MYSQL_ROOT_PASSWORD
+    mysql --user=root --password=$MYSQL_ROOT_PASSWORD
+
+    
 
     # In your mysql shell:
     CREATE DATABASE wordpress;
