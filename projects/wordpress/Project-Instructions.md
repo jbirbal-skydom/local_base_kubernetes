@@ -48,6 +48,8 @@ Create your mysql volume and replicaset. Expose this new internal service.
     kubectl apply -f manifests/mysql-replicaset.yaml
     kubectl apply -f manifests/mysql-service.yaml
 
+To Delete files.
+
     kubectl delete -f manifests/mysql-service.yaml
     kubectl delete -f manifests/mysql-replicaset.yaml
     kubectl delete -f manifests/mysql-volume-claim.yaml
